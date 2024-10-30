@@ -3,11 +3,11 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 import joblib
 
+st.set_page_config(layout="wide")
+
 scaler = StandardScaler()
 
 st.title("Restaurant Rating Prediction")
-
-st.set_page_config(layout="wide")
 st.caption("This app helps you predict a restaurant rating based on its features.")
 
 st.divider()
