@@ -5,7 +5,7 @@ import joblib
 
 st.set_page_config(layout="wide")
 
-scaler = StandardScaler()
+scaler = joblib.load("scaler.pkl")
 
 st.title("Restaurant Rating Prediction")
 st.caption("This app helps you predict a restaurant rating based on its features.")
@@ -26,13 +26,13 @@ model = joblib.load("model.pkl")
 bookingstatus = 1 if tablebooking == "Yes" else 0
 delivery = 1 if online_delivery == "Yes" else 0
 
-average_cost = scaler.fit_transform(average_cost)
-bookingstatus = scaler.fit_transform(tablebooking)
-delivery = scaler.fit_transform(online_delivery)
-price_range = scaler.fit_transform(price_range)
+values = [[average_cost, bookingstatus, delivery, price_range]]
+my_x_values = np.array(values)
+
+X = scaler.transform(my_x_values)
 
 if predict_button:
     st.snow()
-    prediction = model.predict([[average_cost, bookingstatus, delivery, price_range]])
+    prediction = model.predict(X)
 
     st.write(prediction)
