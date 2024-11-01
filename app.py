@@ -36,3 +36,14 @@ if predict_button:
     prediction = model.predict(X)
 
     st.write(prediction)
+
+    if prediction < 2.5:
+        st.write("Poor")
+    elif prediction < 3.5:
+        st.write("Average")
+    elif prediction < 4.0:
+        st.write("Good")
+    elif prediction < 4.5:
+        st.write("Very Good")
+    else:
+        st.write("Excellent")  
